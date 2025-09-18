@@ -19,25 +19,34 @@ dependencies = [
     "ipython",
     "jupyterlab",
     "matplotlib",
+    "seaborn",
     "notebook",
     "numpy",
+    "scipy",
     "pandas",
     "pip",
     "pytest",
     "python-dotenv",
     "ruff",
     "scikit-learn",
+    "tqdm",
+    "more-itertools"
 ]
 requires-python = "~=3.13.0"
 
 
 [tool.ruff]
 line-length = 99
-src = ["project_template"]
-include = ["pyproject.toml", "project_template/**/*.py"]
+src = ["src"]
+include = ["pyproject.toml", "src/**/*.py"]
 
 [tool.ruff.lint]
-extend-select = ["I"]  # Add import sorting
+extend-select = [
+  "I", # Add import sorting
+  "N",   # enforce naming conventions, e.g. ClassName vs function_name
+  "FBT", # detect boolean traps
+  "BLE", # disallow catch-all exceptions
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
