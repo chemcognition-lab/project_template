@@ -4,6 +4,12 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
+# TODO
+ - [ ] Structure src better.
+ - [ ] Add ruff/linter settings.
+ - [ ] Improve org data.
+ - [ ] Autorunning test.
+
 A short description of the project.
 
 ## Project Organization
