@@ -9,31 +9,13 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <new_project_name>"
-    echo "Example: $0 my_fancy_project"
-    exit 1
-fi
-
+# Globals
+OLD_NAME="project_template"
+STYLE_GUIDE="AI_Coding style.md"
 NEW_NAME="$1"
 
-# Check if new name is a valid Python identifier (POSIX-compliant validation)
-case "$NEW_NAME" in
-    *[!a-zA-Z0-9_]*)
-        echo "Error: '$NEW_NAME' is not a valid Python identifier (only letters, numbers, and underscores)."
-        exit 1
-        ;;
-    [0-9]*)
-        echo "Error: '$NEW_NAME' cannot start with a number."
-        exit 1
-        ;;
-esac
-
-OLD_NAME="project_template"
-
-if [ ! -d "$OLD_NAME" ]; then
-    echo "Error: Directory '$OLD_NAME' not found."
-    echo "Perhaps you have already renamed the project?"
+if [ -z "$NEW_NAME" ]; then
+    echo "Usage: $0 <new_project_name>"
     exit 1
 fi
 
@@ -47,27 +29,21 @@ find . -type f \( -name "*.toml" -o -name "*.yml" -o -name "*.yaml" -o -name "*.
     fi
 done
 
-# Rename the actual package directory
+# Rename package folder
 mv "$OLD_NAME" "$NEW_NAME"
 echo "Success! Renamed package folder to '$NEW_NAME'."
 
-# Cleanup phase: remove AI Coding Style Guide
-STYLE_GUIDE="AI_Coding style.md"
-if [ -f "$STYLE_GUIDE" ]; then
-    echo "Cleaning up '$STYLE_GUIDE'..."
-    rm "$STYLE_GUIDE"
-fi
+# Cleanup AI coding style guide
+echo "Cleaning up '$STYLE_GUIDE'..."
+rm "$STYLE_GUIDE"
 
+# Replace README.md with the minimal project template README
+echo "Replacing README.md with minimal project template..."
+mv README_template.md README.md
+
+# Self-destruct: delete this script as it is only needed once
+echo "Self-deleting setup_project.sh..."
+rm "$0"
 
 echo "\nRunning environment setup..."
 exec ./setup.sh
-
-
-# Replace README.md with the minimal project template README
-if [ -f "README_template.md" ]; then
-    echo "Replacing README.md with minimal project template..."
-    mv README_template.md README.md
-fi
-
-# Self-destruct: delete this script as it is only needed once
-rm "$0"
