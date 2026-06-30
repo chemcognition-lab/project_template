@@ -32,7 +32,7 @@ A few suggestions to make life easier:
   - *Recommended Extensions*: [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python), [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff), and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
 - **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)**: Environment manager to keep packages isolated so nothing breaks.
 - **[Ruff](https://astral.sh/ruff)**: Extremely fast linter/formatter. Saves time arguing about formats.
-- **[Pyright](https://github.com/microsoft/pyright)**: Checks type safety so you catch bugs before code runs.
+- **[Pyrefly](https://github.com/facebook/pyrefly)**: Checks type safety so you catch bugs before code runs.
 - **[draccus](https://github.com/dakinghara/draccus)**: Config parser for hyperparameters using typed Python structures.
 - **[loguru](https://github.com/delgan/loguru)**: Easy logging without boilerplate.
 
@@ -71,7 +71,7 @@ To keep figures and logs organized:
 ```
 ├── LICENSE            <- Legal terms for code usage and distribution.
 ├── README.md          <- Setup instructions and project overview.
-├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyright).
+├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
 ├── setup.sh           <- Script to create mamba environment, install package, and register kernel.
 ├── setup_project.sh   <- Script to rename the project and trigger setup.sh.

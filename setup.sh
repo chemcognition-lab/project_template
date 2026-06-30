@@ -20,6 +20,9 @@ mamba env create -f environment.yml
 echo "Installing package in editable mode..."
 mamba run -n "$ENV_NAME" pip install -e .
 
+echo "Installing pre-commit hooks..."
+mamba run -n "$ENV_NAME" pre-commit install
+
 echo "Registering Jupyter kernel..."
 mamba run -n "$ENV_NAME" python -m ipykernel install --user --name "$ENV_NAME" --display-name "Python ($ENV_NAME)"
 

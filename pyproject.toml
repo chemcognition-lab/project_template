@@ -27,11 +27,8 @@ extend-select = [
 known-first-party = ["project_template"]
 force-sort-within-sections = true
 
-[tool.pyright]
-include = ["project_template"]
-exclude = ["**/node_modules", "**/__pycache__"]
-pythonVersion = "3.14"
-pythonPlatform = "Linux"
-typeCheckingMode = "standard"
+[tool.pyrefly]
+project-includes = ["project_template"]
+project-excludes = ["**/node_modules", "**/__pycache__"]
 
 

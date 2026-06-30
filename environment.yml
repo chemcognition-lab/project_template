@@ -13,11 +13,11 @@ dependencies:
   - scipy
   - pandas
   - pytest
-  - python-dotenv
   - ruff
   - scikit-learn
   - tqdm
-  - pyright
+  - pyrefly
+  - pre-commit
   - draccus
   - loguru
   - safetensors

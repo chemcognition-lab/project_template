@@ -14,7 +14,7 @@ This creates the mamba environment, installs the package in editable mode, and r
 ```
 ├── LICENSE            <- Legal terms for code usage and distribution.
 ├── README.md          <- Setup instructions and project overview.
-├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyright).
+├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
 ├── setup.sh           <- Script to create mamba environment, install package, and register kernel.
 ├── data
