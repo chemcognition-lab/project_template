@@ -10,23 +10,18 @@ This is an opinionated template based on the **[Cookiecutter Data Science (v2)](
 
 ## Quick Start (Environment Setup)
 
-We recommend using **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)** to manage environments because it is way faster and lighter than standard conda.
+1. **Clone the repository** and navigate to it.
+2. **Run the setup script** to rename the template package to your project name and configure the environment:
+   ```bash
+   ./setup.sh <new_project_name>
+   ```
 
-1. **Create the environment**:
-   Set up the environment with Python 3.14 and dependencies:
-   ```bash
-   micromamba env create -f environment.yml
-   ```
-2. **Activate the environment**:
-   Activate it for your current terminal session:
-   ```bash
-   micromamba activate project_template
-   ```
-3. **Install the source package**:
-   Install the local code package in editable mode (so changes update on the fly):
-   ```bash
-   pip install -e .
-   ```
+At the end of the script execution, it will print the exact commands needed to activate and use your environment. Read those final output lines to know what to do next.
+
+If you want to skip environment creation and configure it manually later, run:
+```bash
+./setup.sh <new_project_name> --no-setup
+```
 
 ---
 
@@ -90,6 +85,7 @@ To keep figures and logs organized:
 ├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyright).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
 ├── AI_Coding style.md <- Rules and conventions for AI coding assistants.
+├── rename_project.sh  <- Script to rename the project and references.
 ├── data
 │   ├── interim        <- Intermediate transformed or cleaned datasets.
 │   ├── processed      <- Final datasets ready for modeling.

@@ -5,6 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "project_template"
 version = "0.0.1"
+description = "A template project for optimization and machine learning."
 requires-python = ">=3.14"
 
 

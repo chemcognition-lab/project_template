@@ -17,11 +17,11 @@ dependencies:
   - ruff
   - scikit-learn
   - tqdm
-  - more-itertools
   - pyright
   - draccus
   - loguru
   - safetensors
   - pip
   - pip:
-    - -e .
+    - more-itertools
+
