@@ -1,0 +1,27 @@
+name: project_template
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.14
+  - ipython
+  - jupyterlab
+  - matplotlib
+  - seaborn
+  - notebook
+  - numpy
+  - scipy
+  - pandas
+  - pytest
+  - python-dotenv
+  - ruff
+  - scikit-learn
+  - tqdm
+  - more-itertools
+  - pyright
+  - draccus
+  - loguru
+  - safetensors
+  - pip
+  - pip:
+    - -e .

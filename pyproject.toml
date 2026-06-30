@@ -3,42 +3,16 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "src"
+name = "project_template"
 version = "0.0.1"
-description = "A short description of the project."
-authors = [
-  { name = "chemcognition-lab" },
-]
-license = { file = "LICENSE" }
-readme = "README.md"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License"
-]
-dependencies = [
-    "ipython",
-    "jupyterlab",
-    "matplotlib",
-    "seaborn",
-    "notebook",
-    "numpy",
-    "scipy",
-    "pandas",
-    "pip",
-    "pytest",
-    "python-dotenv",
-    "ruff",
-    "scikit-learn",
-    "tqdm",
-    "more-itertools"
-]
-requires-python = "~=3.13.0"
+requires-python = ">=3.14"
+
 
 
 [tool.ruff]
-line-length = 99
-src = ["src"]
-include = ["pyproject.toml", "src/**/*.py"]
+line-length = 88
+src = ["project_template"]
+include = ["pyproject.toml", "project_template/**/*.py"]
 
 [tool.ruff.lint]
 extend-select = [
@@ -49,6 +23,14 @@ extend-select = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+known-first-party = ["project_template"]
 force-sort-within-sections = true
+
+[tool.pyright]
+include = ["project_template"]
+exclude = ["**/node_modules", "**/__pycache__"]
+pythonVersion = "3.14"
+pythonPlatform = "Linux"
+typeCheckingMode = "standard"
+
 
