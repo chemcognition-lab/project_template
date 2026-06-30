@@ -6,24 +6,23 @@
 
 This is an opinionated template based on the **[Cookiecutter Data Science (v2)](https://cookiecutter-data-science.drivendata.org/)** framework. We use it to keep our research clean, structured, and reproducible.
 
----
-
 ## Quick Start (Environment Setup)
 
+We use **mamba** to manage environments. While tools like `uv` are awesome and extremely fast for pure Python, conda/mamba is still needed when dealing with non-pip installable packages (like C++ libs, CUDA, etc.). In the future, a tool like `pixi` might replace this.
+
 1. **Clone the repository** and navigate to it.
-2. **Run the setup script** to rename the template package to your project name and configure the environment:
+2. **Run the setup script** to configure your project:
    ```bash
    ./setup.sh <new_project_name>
    ```
+   This script will rename the template package to your project name, create a mamba virtual environment, register a custom Jupyter kernel, and install your package in editable mode as a local library.
 
-At the end of the script execution, it will print the exact commands needed to activate and use your environment. Read those final output lines to know what to do next.
+Read the final lines of the setup script output to see the exact commands needed to activate and use your environment.
 
-If you want to skip environment creation and configure it manually later, run:
+To only rename the package without creating the mamba environment, run:
 ```bash
 ./setup.sh <new_project_name> --no-setup
 ```
-
----
 
 ## Tooling Recommendations
 
@@ -37,16 +36,12 @@ A few suggestions to make life easier:
 - **[draccus](https://github.com/dakinghara/draccus)**: Config parser for hyperparameters using typed Python structures.
 - **[loguru](https://github.com/delgan/loguru)**: Easy logging without boilerplate.
 
----
-
 ## Coding Style & AI Usage
 
-We follow the **[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)** to keep things readable, alongside the local **[AI Coding Style Guide](AI_Coding%20style.md)**.
+We follow the **[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)** to keep things readable.
 
 **A note on AI usage:**
 AI tools are super helpful, especially for churning out boilerplate code. But be careful, especially with scientific work. Going too fast makes it easy to pile up debt—technical debt, cognitive debt, and a lack of deep understanding of your own codebase. Debt isn't necessarily bad, but you have to pay it back eventually, and it usually comes with interest. Keep this paper in mind: **[Hidden Technical Debt in Machine Learning Systems](https://proceedings.neurips.cc/paper_files/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf)**.
-
----
 
 ## Code Philosophy
 
@@ -57,16 +52,12 @@ AI tools are super helpful, especially for churning out boilerplate code. But be
 - **Composition Over Inheritance**: Favor [composition over inheritance](https://python-patterns.guide/gang-of-four/composition-over-inheritance/). It makes code cleaner and easier to reason about.
 - **Libraries Over Frameworks**: Favor [libraries over frameworks](https://web.archive.org/web/20200606030038/https://www.brandonsmith.ninja/blog/libraries-not-frameworks) to stay in control of the flow and simplify dependencies.
 
----
-
 ## Saving Models
 
 When saving models, do it so you (or someone else) can actually run them later:
 - **Weights**: Use [safetensors](https://github.com/huggingface/safetensors) for fast and secure serialization (much safer than pickle).
 - **Hyperparameters**: Save configurations as JSON or YAML using draccus.
 - **Baseline Stats**: Store a quick eval summary next to the weights. You want to be 100% sure the model you loaded is actually the one you think it is.
-
----
 
 ## Managing Results
 
@@ -75,8 +66,6 @@ To keep figures and logs organized:
 - **Figures**: Save plots as BOTH PNG and SVG (so you can edit vector paths later).
 - **Predictions & Tables**: Use CSVs for small files or serialized predictions. You want to be able to re-calculate or re-plot them easily.
 
----
-
 ## Project Structure
 
 ```
@@ -84,8 +73,7 @@ To keep figures and logs organized:
 ├── README.md          <- Setup instructions and project overview.
 ├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyright).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
-├── AI_Coding style.md <- Rules and conventions for AI coding assistants.
-├── rename_project.sh  <- Script to rename the project and references.
+├── setup.sh           <- Script to rename the project, configure mamba env, and register kernel.
 ├── data
 │   ├── interim        <- Intermediate transformed or cleaned datasets.
 │   ├── processed      <- Final datasets ready for modeling.

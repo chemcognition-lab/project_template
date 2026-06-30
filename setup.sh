@@ -71,6 +71,13 @@ done
 mv "$OLD_NAME" "$NEW_NAME"
 echo "Success! Renamed package folder to '$NEW_NAME'."
 
+# Cleanup phase: remove AI Coding Style Guide
+STYLE_GUIDE="AI_Coding style.md"
+if [ -f "$STYLE_GUIDE" ]; then
+    echo "Cleaning up '$STYLE_GUIDE'..."
+    rm "$STYLE_GUIDE"
+fi
+
 # Optional environment setup
 if [ "$SETUP" = true ]; then
     echo "\n--- Setting up virtual environment using mamba ---"
