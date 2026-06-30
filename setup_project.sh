@@ -58,6 +58,11 @@ if [ -f "$STYLE_GUIDE" ]; then
     rm "$STYLE_GUIDE"
 fi
 
+
+echo "\nRunning environment setup..."
+exec ./setup.sh
+
+
 # Replace README.md with the minimal project template README
 if [ -f "README_template.md" ]; then
     echo "Replacing README.md with minimal project template..."
@@ -66,7 +71,3 @@ fi
 
 # Self-destruct: delete this script as it is only needed once
 rm "$0"
-
-echo "\nRunning environment setup..."
-exec ./setup.sh
-
