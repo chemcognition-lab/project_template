@@ -13,7 +13,7 @@ We use **mamba** to manage environments. While tools like `uv` are awesome and e
 1. **Clone the repository** and navigate to it.
 2. **Run the setup script** to configure your project:
    ```bash
-   ./setup.sh <new_project_name>
+   ./setup_project.sh <new_project_name>
    ```
    This script will rename the template package to your project name, create a mamba virtual environment, register a custom Jupyter kernel, and install your package in editable mode as a local library.
 
@@ -21,7 +21,7 @@ Read the final lines of the setup script output to see the exact commands needed
 
 To only rename the package without creating the mamba environment, run:
 ```bash
-./setup.sh <new_project_name> --no-setup
+./setup_project.sh <new_project_name> --no-setup
 ```
 
 ## Tooling Recommendations
@@ -73,7 +73,8 @@ To keep figures and logs organized:
 ├── README.md          <- Setup instructions and project overview.
 ├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyright).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
-├── setup.sh           <- Script to rename the project, configure mamba env, and register kernel.
+├── setup.sh           <- Script to create mamba environment, install package, and register kernel.
+├── setup_project.sh   <- Script to rename the project and trigger setup.sh.
 ├── data
 │   ├── interim        <- Intermediate transformed or cleaned datasets.
 │   ├── processed      <- Final datasets ready for modeling.
