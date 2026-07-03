@@ -16,6 +16,9 @@ src = ["project_template"]
 include = ["pyproject.toml", "project_template/**/*.py"]
 
 [tool.ruff.lint]
+ignore = [
+  "F722", # Forward annotation syntax error (jaxtyping shapes cause this)
+]
 extend-select = [
   "I", # Add import sorting
   "N",   # enforce naming conventions, e.g. ClassName vs function_name
@@ -29,6 +32,11 @@ force-sort-within-sections = true
 
 [tool.pyrefly]
 project-includes = ["project_template"]
-project-excludes = ["**/node_modules", "**/__pycache__"]
+project-excludes = [
+  "**/__pyrefly_virtual__/**",
+  "**/node_modules",
+  "**/__pycache__"
+]
+
 
 

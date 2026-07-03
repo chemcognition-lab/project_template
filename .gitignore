@@ -208,3 +208,11 @@ __marimo__/
 
 # Antigravity agent skills
 .agents/skills/
+
+# Models
+*.pt
+*.safetensors
+
+# Results prediction maps (heavy binary files, same as models)
+*_predictions.npz
+

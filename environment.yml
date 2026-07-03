@@ -5,6 +5,7 @@ channels:
 dependencies:
   - python=3.14
   - ipython
+  - ipykernel
   - jupyterlab
   - matplotlib
   - seaborn
