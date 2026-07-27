@@ -22,7 +22,7 @@ fi
 echo "Renaming '$OLD_NAME' to '$NEW_NAME'..."
 
 # Replace text occurrences in files (excluding this script itself)
-find . -type f \( -name "*.toml" -o -name "*.yml" -o -name "*.yaml" -o -name "*.md" -o -name "*.py" -o -name "*.ipynb" \) -not -path '*/.*' -not -name 'setup_project.sh' | while read -r file; do
+find . -type f \( -name "*.toml" -o -name "*.yml" -o -name "*.yaml" -o -name "*.md" -o -name "*.py" -o -name "*.ipynb" -o -name "*.sh" \) -not -path '*/.*' -not -name 'setup_project.sh' | while read -r file; do
     if grep -q "$OLD_NAME" "$file"; then
         echo "Updating references in: $file"
         sed -i "s/$OLD_NAME/$NEW_NAME/g" "$file"

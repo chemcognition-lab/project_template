@@ -8,21 +8,24 @@ This is an opinionated template based on the **[Cookiecutter Data Science (v2)](
 
 ## Quick Start (Environment Setup)
 
-We use **mamba** to manage environments. While tools like `uv` are awesome and extremely fast for pure Python, conda/mamba is still needed when dealing with non-pip installable packages (like C++ libs, CUDA, etc.). In the future, a tool like `pixi` might replace this.
+We use **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)** (or mamba/conda) to manage environments. While pure-Python managers like `uv` are fast, conda-forge packages via micromamba are essential for C++ dependencies, CUDA, and scientific packages like RDKit or PyTorch.
 
 1. **Clone the repository** and navigate to it.
 2. **Run the setup script** to configure your project:
    ```bash
    ./setup_project.sh <new_project_name>
    ```
-   This script will rename the template package to your project name, create a mamba virtual environment, register a custom Jupyter kernel, and install your package in editable mode as a local library.
+   This script will rename the template package to your project name, create a micromamba virtual environment, register a custom Jupyter kernel, and install your package in editable mode as a local library.
 
 Read the final lines of the setup script output to see the exact commands needed to activate and use your environment.
 
-To only rename the package without creating the mamba environment, run:
-```bash
-./setup_project.sh <new_project_name> --no-setup
-```
+### HPC / Cluster Setup
+When deploying to HPC clusters (e.g. SciNet, Balam, Compute Canada/Alliance):
+1. Run `./hpc/setup_env.sh` on a login node to build the environment on `$SCRATCH` and set up package caches.
+2. Activate the environment in job scripts or interactive sessions with:
+   ```bash
+   source hpc/activate_env.sh
+   ```
 
 ## Tooling Recommendations
 
@@ -30,7 +33,7 @@ A few suggestions to make life easier:
 
 - **[VSCode](https://code.visualstudio.com/)**: Good choice for an editor.
   - *Recommended Extensions*: [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python), [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff), and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
-- **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)**: Environment manager to keep packages isolated so nothing breaks.
+- **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)**: Fast, self-contained environment manager to keep packages isolated.
 - **[Ruff](https://astral.sh/ruff)**: Extremely fast linter/formatter. Saves time arguing about formats.
 - **[Pyrefly](https://github.com/facebook/pyrefly)**: Checks type safety so you catch bugs before code runs.
 - **[draccus](https://github.com/dakinghara/draccus)**: Config parser for hyperparameters using typed Python structures.
@@ -73,8 +76,11 @@ To keep figures and logs organized:
 ├── README.md          <- Setup instructions and project overview.
 ├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
-├── setup.sh           <- Script to create mamba environment, install package, and register kernel.
+├── setup.sh           <- Script to create micromamba environment, install package, and register kernel.
 ├── setup_project.sh   <- Script to rename the project and trigger setup.sh.
+├── hpc
+│   ├── setup_env.sh   <- Script to initialize micromamba environment on HPC clusters ($SCRATCH).
+│   └── activate_env.sh<- Helper script to load modules and activate cluster environment.
 ├── data
 │   ├── interim        <- Intermediate transformed or cleaned datasets.
 │   ├── processed      <- Final datasets ready for modeling.

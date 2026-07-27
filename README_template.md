@@ -7,7 +7,13 @@ To set up the environment and install the package for development:
 ./setup.sh
 ```
 
-This creates the mamba environment, installs the package in editable mode, and registers the Jupyter kernel.
+This creates the micromamba environment, installs the package in editable mode, and registers the Jupyter kernel.
+
+For HPC cluster deployment ($SCRATCH):
+```bash
+./hpc/setup_env.sh
+source hpc/activate_env.sh
+```
 
 ## Project Structure
 
@@ -16,7 +22,10 @@ This creates the mamba environment, installs the package in editable mode, and r
 ├── README.md          <- Setup instructions and project overview.
 ├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
-├── setup.sh           <- Script to create mamba environment, install package, and register kernel.
+├── setup.sh           <- Script to create micromamba environment, install package, and register kernel.
+├── hpc
+│   ├── setup_env.sh   <- Script to initialize micromamba environment on HPC clusters ($SCRATCH).
+│   └── activate_env.sh<- Helper script to load modules and activate cluster environment.
 ├── data
 │   ├── interim        <- Intermediate transformed or cleaned datasets.
 │   ├── processed      <- Final datasets ready for modeling.

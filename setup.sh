@@ -14,16 +14,42 @@ if [ -z "$ENV_NAME" ]; then
     exit 1
 fi
 
-echo "Setting up mamba environment '$ENV_NAME'..."
-mamba env create -f environment.yml
+# Detect package manager (micromamba > mamba > conda > auto-install micromamba)
+if command -v micromamba >/dev/null 2>&1; then
+    MGR="micromamba"
+    echo "Found micromamba. Using it for setup..."
+elif command -v mamba >/dev/null 2>&1; then
+    MGR="mamba"
+    echo "Found mamba. Using it for setup..."
+elif command -v conda >/dev/null 2>&1; then
+    MGR="conda"
+    echo "Found conda. Using it for setup..."
+else
+    echo "No micromamba, mamba, or conda found in PATH."
+    echo "Installing micromamba automatically..."
+    curl -Lsk https://micro.mamba.pm/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+    if command -v micromamba >/dev/null 2>&1; then
+        MGR="micromamba"
+        echo "Successfully installed micromamba!"
+    else
+        echo "Installation succeeded, but 'micromamba' is still not found in PATH."
+        echo "Please install conda, mamba, or micromamba manually, then run this script again."
+        exit 1
+    fi
+fi
+
+echo "Setting up environment '$ENV_NAME'..."
+$MGR env create -f environment.yml -y
 
 echo "Installing package in editable mode..."
-mamba run -n "$ENV_NAME" pip install -e .
+$MGR run -n "$ENV_NAME" pip install -e .
 
 echo "Installing pre-commit hooks..."
-mamba run -n "$ENV_NAME" pre-commit install
+$MGR run -n "$ENV_NAME" pre-commit install
 
 echo "Registering Jupyter kernel..."
-mamba run -n "$ENV_NAME" python -m ipykernel install --user --name "$ENV_NAME" --display-name "Python ($ENV_NAME)"
+$MGR run -n "$ENV_NAME" python -m ipykernel install --user --name "$ENV_NAME" --display-name "Python ($ENV_NAME)"
 
-echo "Setup complete! Activate with: mamba activate $ENV_NAME"
+echo "Setup complete! Activate with: $MGR activate $ENV_NAME"
+
