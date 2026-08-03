@@ -11,7 +11,6 @@ set -e
 
 # Globals
 OLD_NAME="project_template"
-STYLE_GUIDE="AI_Coding style.md"
 NEW_NAME="$1"
 
 if [ -z "$NEW_NAME" ]; then
@@ -32,10 +31,6 @@ done
 # Rename package folder
 mv "$OLD_NAME" "$NEW_NAME"
 echo "Success! Renamed package folder to '$NEW_NAME'."
-
-# Cleanup AI coding style guide
-echo "Cleaning up '$STYLE_GUIDE'..."
-rm "$STYLE_GUIDE"
 
 # Replace README.md with the minimal project template README
 echo "Replacing README.md with minimal project template..."

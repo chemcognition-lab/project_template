@@ -209,10 +209,15 @@ __marimo__/
 # Antigravity agent skills
 .agents/skills/
 
-# Models
+# Models & Results
+# We expect models/ and results/ to change frequently during research.
+# Ignore them by default, but force commit (e.g. `git add -f <file>`) if you have something set in stone.
+models/*
+!models/.gitkeep
+results/*
+!results/.gitkeep
 *.pt
 *.safetensors
-
-# Results prediction maps (heavy binary files, same as models)
 *_predictions.npz
+
 

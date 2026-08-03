@@ -30,13 +30,6 @@ extend-select = [
 known-first-party = ["project_template"]
 force-sort-within-sections = true
 
-[tool.pyrefly]
-project-includes = ["project_template"]
-project-excludes = [
-  "**/__pyrefly_virtual__/**",
-  "**/node_modules",
-  "**/__pycache__"
-]
 
 
 

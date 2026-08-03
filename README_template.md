@@ -20,9 +20,10 @@ source hpc/activate_env.sh
 ```
 ├── LICENSE            <- Legal terms for code usage and distribution.
 ├── README.md          <- Setup instructions and project overview.
-├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
+├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
 ├── setup.sh           <- Script to create micromamba environment, install package, and register kernel.
+├── docs               <- Project specs, papers.
 ├── hpc
 │   ├── setup_env.sh   <- Script to initialize micromamba environment on HPC clusters ($SCRATCH).
 │   └── activate_env.sh<- Helper script to load modules and activate cluster environment.

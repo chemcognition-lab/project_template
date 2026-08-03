@@ -35,9 +35,11 @@ A few suggestions to make life easier:
   - *Recommended Extensions*: [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python), [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff), and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
 - **[micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)**: Fast, self-contained environment manager to keep packages isolated.
 - **[Ruff](https://astral.sh/ruff)**: Extremely fast linter/formatter. Saves time arguing about formats.
-- **[Pyrefly](https://github.com/facebook/pyrefly)**: Checks type safety so you catch bugs before code runs.
 - **[draccus](https://github.com/dakinghara/draccus)**: Config parser for hyperparameters using typed Python structures.
 - **[loguru](https://github.com/delgan/loguru)**: Easy logging without boilerplate.
+
+*Note on Type Checking*: We do not use strict static type checkers (such as Pyrefly or MyPy) in this project because scientific libraries like RDKit and PyTorch generate a high frequency of false positives.
+
 
 ## Coding Style & AI Usage
 
@@ -74,10 +76,11 @@ To keep figures and logs organized:
 ```
 ├── LICENSE            <- Legal terms for code usage and distribution.
 ├── README.md          <- Setup instructions and project overview.
-├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff, Pyrefly).
+├── pyproject.toml     <- Configuration for Python packaging and tools (Ruff).
 ├── environment.yml    <- Environment recipe listing packages and dependencies.
 ├── setup.sh           <- Script to create micromamba environment, install package, and register kernel.
 ├── setup_project.sh   <- Script to rename the project and trigger setup.sh.
+├── docs               <- Project specs, papers.
 ├── hpc
 │   ├── setup_env.sh   <- Script to initialize micromamba environment on HPC clusters ($SCRATCH).
 │   └── activate_env.sh<- Helper script to load modules and activate cluster environment.
